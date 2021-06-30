@@ -521,6 +521,8 @@ namespace TicTacToe {
 			button8->BackColor = System::Drawing::Color::WhiteSmoke;
 			button9->BackColor = System::Drawing::Color::WhiteSmoke;
 			button1->BackColor = System::Drawing::Color::WhiteSmoke;
+
+			ResetGame->Enabled = true;
 		}
 		void reset_score() {
 			playerX->Text = "0";
@@ -578,6 +580,70 @@ namespace TicTacToe {
 
 			}
 
+			if (button1->Text == "X" && button4->Text == "X" && button7->Text == "X") {
+				button7->BackColor = System::Drawing::Color::HotPink;
+				button4->BackColor = System::Drawing::Color::HotPink;
+				button1->BackColor = System::Drawing::Color::HotPink;
+				MessageBox::Show("The Winner is Player X", "TicTacToe", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				plusone = int::Parse(playerX->Text);
+				playerX->Text = Convert::ToString(plusone + 1);
+				Enable_False();
+
+			}
+
+			if (button2->Text == "X" && button5->Text == "X" && button8->Text == "X") {
+				button2->BackColor = System::Drawing::Color::HotPink;
+				button5->BackColor = System::Drawing::Color::HotPink;
+				button8->BackColor = System::Drawing::Color::HotPink;
+				MessageBox::Show("The Winner is Player X", "TicTacToe", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				plusone = int::Parse(playerX->Text);
+				playerX->Text = Convert::ToString(plusone + 1);
+				Enable_False();
+
+			}
+			if (button3->Text == "X" && button6->Text == "X" && button9->Text == "X") {
+				button3->BackColor = System::Drawing::Color::HotPink;
+				button6->BackColor = System::Drawing::Color::HotPink;
+				button9->BackColor = System::Drawing::Color::HotPink;
+				MessageBox::Show("The Winner is Player X", "TicTacToe", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				plusone = int::Parse(playerX->Text);
+				playerX->Text = Convert::ToString(plusone + 1);
+				Enable_False();
+
+			}
+
+			if (button1->Text == "O" && button4->Text == "O" && button7->Text == "O") {
+				button7->BackColor = System::Drawing::Color::HotPink;
+				button4->BackColor = System::Drawing::Color::HotPink;
+				button1->BackColor = System::Drawing::Color::HotPink;
+				MessageBox::Show("The Winner is Player O", "TicTacToe", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				plusone = int::Parse(playerO->Text);
+				playerO->Text = Convert::ToString(plusone + 1);
+				Enable_False();
+
+			}
+
+			if (button2->Text == "O" && button5->Text == "O" && button8->Text == "O") {
+				button2->BackColor = System::Drawing::Color::HotPink;
+				button5->BackColor = System::Drawing::Color::HotPink;
+				button8->BackColor = System::Drawing::Color::HotPink;
+				MessageBox::Show("The Winner is Player O", "TicTacToe", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				plusone = int::Parse(playerO->Text);
+				playerO->Text = Convert::ToString(plusone + 1);
+				Enable_False();
+
+			}
+			if (button3->Text == "O" && button6->Text == "O" && button9->Text == "O") {
+				button3->BackColor = System::Drawing::Color::HotPink;
+				button6->BackColor = System::Drawing::Color::HotPink;
+				button9->BackColor = System::Drawing::Color::HotPink;
+				MessageBox::Show("The Winner is Player O", "TicTacToe", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				plusone = int::Parse(playerO->Text);
+				playerO->Text = Convert::ToString(plusone + 1);
+				Enable_False();
+
+			}
+
 			if (button1->Text == "O" && button2->Text == "O" && button3->Text == "O") {
 				button1->BackColor = System::Drawing::Color::PowderBlue;
 				button2->BackColor = System::Drawing::Color::PowderBlue;
@@ -628,13 +694,24 @@ namespace TicTacToe {
 				Enable_False();
 
 			}
+			update_hightlight();
 			
 			
 
 			
 		}
 		void update_hightlight() {
-			if (int::Parse(playerO->Text) == 0 && int::Parse(playerX->Text) == 0) {
+			if (int::Parse(playerO->Text) >= int::Parse(maxVal) ) {
+				highlight->Text = "PlayerO Won!!!";
+				ResetGame->Enabled = false;
+
+			}
+			else if (int::Parse(playerX->Text) >= int::Parse(maxVal)) {
+				highlight->Text = "PlayerX Won!!!";
+				ResetGame->Enabled = false;
+
+			}
+			else if (int::Parse(playerO->Text) == 0 && int::Parse(playerX->Text) == 0) {
 
 			}
 			else if ((int::Parse(playerO->Text)) > int::Parse(playerX->Text)) {
@@ -798,7 +875,7 @@ private: System::Void NewGame_Click(System::Object^ sender, System::EventArgs^ e
 private: System::Void ResetGame_Click(System::Object^ sender, System::EventArgs^ e) {
 	reset();
 	Enable_True();
-	update_hightlight();
+	
 }
 private: System::Void changeMax_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->Hide();
